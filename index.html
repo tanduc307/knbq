@@ -135,51 +135,68 @@
       <a class="btn" href="http://163.61.73.72/">Trở về quá khứ</a>
     </div>
 
-    <!-- controls (tùy chọn) 
-    <div class="controls" aria-hidden="false">
-      <button id="mute-btn" type="button" aria-pressed="true">Muted</button>
-      <button id="pause-btn" type="button">Pause</button>
-    </div>
-	-->
+ 
   </main>
 
-  <script>
-    // JS đơn giản cho nút mute / pause (không bắt buộc)
-    (function () {
-      const video = document.querySelector('.bg-video');
-      const muteBtn = document.getElementById('mute-btn');
-      const pauseBtn = document.getElementById('pause-btn');
+ 
+  
+  
+ <!--  chèn audio     -->
 
-      if (!video) {
-        // trên mobile, video bị ẩn; ẩn controls
-        document.querySelector('.controls').style.display = 'none';
-        return;
+<audio id="bg-audio" autoplay loop>
+  <source src="music.wav" type="audio/wav">
+  <source src="music.ogg" type="audio/ogg">
+  Trình duyệt của bạn không hỗ trợ audio.
+</audio>  
+
+<div class="controls">
+
+  <button id="music-btn">Play</button>
+</div>
+
+  
+<script>
+(function () {
+  const video = document.querySelector('.bg-video');
+  const audio = document.getElementById('bg-audio');
+
+  const muteBtn = document.getElementById('mute-btn');
+  const pauseBtn = document.getElementById('pause-btn');
+  const musicBtn = document.getElementById('music-btn');
+
+  if (!audio) {
+    document.querySelector('.controls').style.display = 'none';
+    return;
+  }
+
+  function updateButtons() {
+    musicBtn.textContent = audio.paused ? 'Play' : 'Pause';
+  }
+
+  /* --- AUDIO CONTROL --- */
+  musicBtn.addEventListener('click', async () => {
+    if (audio.paused) {
+      try {
+        await audio.play(); // bắt đầu phát nhạc
+      } catch (err) {
+        console.log("Trình duyệt chặn autoplay cho audio");
       }
+    } else {
+      audio.pause();
+    }
+    updateButtons();
+  });
 
-      // cập nhật trạng thái nút theo video
-      function updateMuteText() {
-        muteBtn.textContent = video.muted ? 'Muted' : 'Unmuted';
-        muteBtn.setAttribute('aria-pressed', String(!video.muted));
-      }
-      function updatePauseText() {
-        pauseBtn.textContent = video.paused ? 'Play' : 'Pause';
-      }
-
-      muteBtn.addEventListener('click', () => {
-        video.muted = !video.muted;
-        updateMuteText();
-      });
-
-      pauseBtn.addEventListener('click', () => {
-        if (video.paused) video.play();
-        else video.pause();
-        updatePauseText();
-      });
-
-      // đảm bảo nút đồng bộ khi trang load
-      updateMuteText();
-      updatePauseText();
-    })();
-  </script>
+  updateButtons();
+})();
+</script>
+ 
+  
+  
+  
+  
+  
+  
+  
 </body>
 </html>
