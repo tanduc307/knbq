@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Video Background Example</title>
+  <title>Kỷ niệm bỏ quên</title>
   <style>
-    /* reset cơ bản */
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    /* container toàn trang */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -17,11 +16,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
+      color: black;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
-    /* video nền chiếm full */
     .bg-video {
       position: absolute;
       top: 50%;
@@ -29,29 +27,19 @@
       width: 100%;
       height: 100%;
       transform: translate(-50%, -50%);
-      object-fit: cover; /* cover toàn khung */
+      object-fit: cover; 
       z-index: 0;
-      pointer-events: none; /* tránh tương tác với video */
+      pointer-events: none; 
     }
 
-    /* poster fallback (nếu muốn) */
     .hero::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: url('poster.jpg') center/cover no-repeat;
+      background: url('poster.png') center/cover no-repeat;
       z-index: 0;
       opacity: 0; /* mặc định 0, chỉ hiện nếu video bị ẩn qua media query */
     }
-
-    /* lớp overlay để làm tối/blur nội dung nền, giúp chữ dễ đọc 
-    .overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
-      z-index: 1;
-      backdrop-filter: blur(2px);
-    }*/
 
     /* nội dung hiển thị trên video */
     .content {
@@ -83,113 +71,39 @@
       backdrop-filter: blur(3px);
     }
 
-    /* nút bật/tắt âm video (nếu muốn) */
-    .controls {
-      position: absolute;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 3;
-      display: flex;
-      gap: .5rem;
-      align-items: center;
-    }
-    .controls button {
-      background: rgba(0,0,0,0.45);
-      color: white;
-      border: 0;
-      padding: .45rem .6rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    /* trên màn hình nhỏ: tắt video và hiện poster (để tiết kiệm dữ liệu và tránh vấn đề autoplay) */
-    @media (max-width: 720px) {
-      .bg-video { display: none; }
-      .hero::before { opacity: 1; } /* hiển thị poster */
-      .overlay { background: rgba(0,0,0,0.45); }
-    }
   </style>
 </head>
 <body>
   <main class="hero" role="main">
-    <!-- Video background: cung cấp 2 định dạng chính để tương thích -->
-    <video class="bg-video"
+        <video class="bg-video"
            autoplay
            muted
            loop
            playsinline
-           poster="poster.jpg"
+           poster="poster.png"
            aria-hidden="true">
       <source src="cafe.webm" type="video/webm">
       <source src="cafe.mp4" type="video/mp4">
-      <!-- Nếu video không load, trình duyệt sẽ hiển thị poster (qua CSS ::before) -->
+    
     </video>
-
-    <!-- overlay để tối nền -->
+    
     <div class="overlay" aria-hidden="true"></div>
 
-    <!-- nội dung trang -->
-    <div class="content">
-      <h1>Kỷ niệm bỏ quên</h1>
-      <p>Yêu nhau đi để rồi mai chia ly, dù là trong cơn đau còn có nhau<br>Nước mắt lắng đọng vành môi em thơ ngây, tóc em bay ướt đôi vai gầy...</p>
-      <a class="btn" href="http://river.kyniemboquen.com/web/street/index.html">Trở về quá khứ</a>
+    
+    <div class="content">    
+      <a class="btn" href="http://river.kyniemboquen.com/web/street/index.html">Kỷ niệm bỏ quên</a>
     </div>
 
  
   </main>
 
- 
-  
-  
- <!--  chèn audio     -->
 
-<audio id="bg-audio" autoplay>
+<audio autoplay controls>
   <source src="music.flac" type="audio/flac">
   <source src="music.ogg" type="audio/ogg">
   Trình duyệt của bạn không hỗ trợ audio.
 </audio>  
 
-<div class="controls">
-
-  <button id="music-btn">Play</button>
-</div>
-
-  
-<script>
-(function () {
-  const video = document.querySelector('.bg-video');
-  const audio = document.getElementById('bg-audio');
-
-  const muteBtn = document.getElementById('mute-btn');
-  const pauseBtn = document.getElementById('pause-btn');
-  const musicBtn = document.getElementById('music-btn');
-
-  if (!audio) {
-    document.querySelector('.controls').style.display = 'none';
-    return;
-  }
-
-  function updateButtons() {
-    musicBtn.textContent = audio.paused ? 'Play' : 'Pause';
-  }
-
-  /* --- AUDIO CONTROL --- */
-  musicBtn.addEventListener('click', async () => {
-    if (audio.paused) {
-      try {
-        await audio.play(); // bắt đầu phát nhạc
-      } catch (err) {
-        console.log("Trình duyệt chặn autoplay cho audio");
-      }
-    } else {
-      audio.pause();
-    }
-    updateButtons();
-  });
-
-  updateButtons();
-})();
-</script>
  
   
   
