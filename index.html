@@ -70,6 +70,16 @@
       font-weight: 600;
       backdrop-filter: blur(3px);
     }
+	
+	.controls {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 3;
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
 
   </style>
 </head>
@@ -89,22 +99,24 @@
     
     <div class="overlay" aria-hidden="true"></div>
 
-    
+    <!--
     <div class="content">    
       <a class="btn" href="http://river.kyniemboquen.com/web/street/index.html">Kỷ niệm bỏ quên</a>
     </div>
-
+	-->
  
   </main>
 
 
 <audio autoplay controls>
-  <source src="music.flac" type="audio/flac">
+  <source src="http://river.kyniemboquen.com/data/rain/anni.flac" type="audio/flac">
   <source src="music.ogg" type="audio/ogg">
   Trình duyệt của bạn không hỗ trợ audio.
 </audio>  
 
- 
+ <div class="controls">
+<button id="music-btn">Play</button>
+</div>
   
   
   
