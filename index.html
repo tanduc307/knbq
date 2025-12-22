@@ -2,12 +2,13 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8" />
-  <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kỷ niệm bỏ quên</title>
   <style>
-
+    /* reset cơ bản */
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* container toàn trang */
     .hero {
       position: relative;
       min-height: 100vh;
@@ -16,10 +17,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: black;
+      color: white;
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
     }
 
+    /* video nền chiếm full */
     .bg-video {
       position: absolute;
       top: 50%;
@@ -27,11 +29,12 @@
       width: 100%;
       height: 100%;
       transform: translate(-50%, -50%);
-      object-fit: cover; 
+      object-fit: cover; /* cover toàn khung */
       z-index: 0;
-      pointer-events: none; 
+      pointer-events: none; /* tránh tương tác với video */
     }
 
+    /* poster fallback (nếu muốn) */
     .hero::before {
       content: "";
       position: absolute;
@@ -41,10 +44,20 @@
       opacity: 0; /* mặc định 0, chỉ hiện nếu video bị ẩn qua media query */
     }
 
+    /* lớp overlay để làm tối/blur nội dung nền, giúp chữ dễ đọc 
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+      z-index: 1;
+      backdrop-filter: blur(2px);
+    }*/
+
     /* nội dung hiển thị trên video */
     .content {
       position: relative;
       z-index: 2;
+      top: 0px;
       text-align: center;
       padding: 2rem;
       max-width: 900px;
@@ -68,10 +81,11 @@
       color: white;
       text-decoration: none;
       font-weight: 600;
-      backdrop-filter: blur(3px);
+      backdrop-filter: blur(1px);
     }
-	
-	.controls {
+
+    /* nút bật/tắt âm video (nếu muốn) */
+    .controls {
       position: absolute;
       right: 1rem;
       bottom: 1rem;
@@ -80,47 +94,91 @@
       gap: .5rem;
       align-items: center;
     }
+    .controls button {
+      background: rgba(0,0,0,0.45);
+      color: white;
+      border: 0;
+      padding: .45rem .6rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
 
+    /* trên màn hình nhỏ: tắt video và hiện poster (để tiết kiệm dữ liệu và tránh vấn đề autoplay) */
+    @media (max-width: 720px) {
+      .bg-video { display: none; }
+      .hero::before { opacity: 1; } /* hiển thị poster */
+      .overlay { background: rgba(0,0,0,0.45); }
+    }
   </style>
 </head>
 <body>
   <main class="hero" role="main">
-        <video class="bg-video"
+    <!-- Video background: cung cấp 2 định dạng chính để tương thích -->
+    <video class="bg-video"
            autoplay
            muted
            loop
            playsinline
-           poster="poster.png"
+           poster="poster.jpg"
            aria-hidden="true">
       <source src="cafe.webm" type="video/webm">
       <source src="cafe.mp4" type="video/mp4">
-    
+      <!-- Nếu video không load, trình duyệt sẽ hiển thị poster (qua CSS ::before) -->
     </video>
-    
+
+    <!-- overlay để tối nền -->
     <div class="overlay" aria-hidden="true"></div>
 
-    <!--
-    <div class="content">    
-      <a class="btn" href="http://river.kyniemboquen.com/web/street/index.html">Kỷ niệm bỏ quên</a>
+    <!-- nội dung trang -->
+    <div class="content">
+      <h1>Kỷ niệm bỏ quên</h1>
+      <p>Góc bình yên của bạn nhìn ánh nắng chiếu xuyên qua lá,<br>những gì đã trải qua cũng đã là kỷ niệm, trân trọng và yêu thương.</p>
+      <a class="btn" href="http://river.kyniemboquen.com/">Trở về quá khứ</a>
     </div>
-	-->
+
  
   </main>
 
+ 
+  
+  
+ <!--  chèn audio     -->
 
-<audio autoplay controls>
+<audio id="bgAudio" autoplay>
   <source src="music.flac" type="audio/flac">
   <source src="music.ogg" type="audio/ogg">
   Trình duyệt của bạn không hỗ trợ audio.
 </audio>  
 
- <div class="controls">
-<button id="music-btn">Play</button>
+<div class="controls">
+
+  <button id="toggleBtn">Play</button>
+
 </div>
+
   
-  
-  
-  
+<script>
+    const audio = document.getElementById("bgAudio");
+    const btn = document.getElementById("toggleBtn");
+
+    btn.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play();
+            btn.textContent = "⏸ Pause";
+        } else {
+            audio.pause();
+            btn.textContent = "▶ Play";
+        }
+    });
+
+    // Khi nhạc chạy xong
+    audio.addEventListener("ended", () => {
+        btn.textContent = "▶ Play";
+        audio.currentTime = 0;
+    });
+</script>
+   
+   
   
   
   
