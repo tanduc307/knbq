@@ -144,7 +144,7 @@
   
  <!--  chèn audio     -->
 
-<audio id="bgAudio" autoplay>
+<audio id="bgAudio">
   <source src="music.flac" type="audio/flac">
   <source src="music.ogg" type="audio/ogg">
   Trình duyệt của bạn không hỗ trợ audio.
@@ -164,10 +164,10 @@
     btn.addEventListener("click", () => {
         if (audio.paused) {
             audio.play();
-            btn.textContent = "⏸ Pause";
+            btn.textContent = "Pause";
         } else {
             audio.pause();
-            btn.textContent = "▶ Play";
+            btn.textContent = "Play";
         }
     });
 
