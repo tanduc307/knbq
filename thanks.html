@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/x-icon" href="favico.png">
+<title>Kỷ niệm bỏ quên</title>
+
+<style>
+    /* Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    /* Background */
+    body {
+        min-height: 100vh;
+        background: url("back.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+    }
+
+
+    /* Header / Menu */
+    header {
+        padding: 20px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 20px;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        gap: 24px;
+    }
+
+    nav a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 15px;
+        opacity: 0.85;
+        transition: opacity 0.2s;
+    }
+
+    nav a:hover {
+        opacity: 1;
+    }
+
+    /* Nội dung */
+    main {
+        padding: 80px 40px;
+        max-width: 800px;
+    }
+
+    h1 {
+        font-size: 42px;
+        margin-bottom: 16px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.6;
+        opacity: 0.9;
+    }
+
+    .controls {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 3;
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
+
+    .controls button {
+      background: rgba(0,0,0,0.45);
+      color: white;
+      border: 0;
+      padding: .45rem .6rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+<div class="overlay">
+
+    <header>
+        <div class="logo"></div>
+        <nav>
+            <ul>
+                <li><a href="https://kyniemboquen.com/"><b>Trang chủ</b></a></li>
+                <li><a href="https://anhnangchieuxuyenla.blogspot.com/"><b>Bài viết</b></a></li>
+                <li><a href="https://anhnangchieuxuyenla.blogspot.com/2025/12/blog-post.html"><b>Liên hệ</b></a></li>
+             
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <a href="http://river.kyniemboquen.com/chiconlagiacmo/" style="text-decoration: none;"><h2><span style="color: yellow;">Chỉ còn là giấc mơ</span></h2></a>
+        <a href="http://river.kyniemboquen.com:4533/app/#/login" style="text-decoration: none;"><h2><span style="color: yellow;">Nghe nhạc</span></h2></a>
+        
+    </main>
+
+</div>
+
+<audio id="bgAudio">
+  <source src="proud.flac" type="audio/flac">
+  <source src="proud.ogg" type="audio/ogg">
+  Trình duyệt của bạn không hỗ trợ audio.
+</audio>  
+
+<div class="controls">
+
+  <button id="toggleBtn">Play</button>
+
+</div>
+
+  
+<script>
+    const audio = document.getElementById("bgAudio");
+    const btn = document.getElementById("toggleBtn");
+
+    btn.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play();
+            btn.textContent = "Pause";
+        } else {
+            audio.pause();
+            btn.textContent = "Play";
+        }
+    });
+
+    // Khi nhạc chạy xong
+    audio.addEventListener("ended", () => {
+        btn.textContent = "Play";
+        audio.currentTime = 0;
+    });
+</script>
+</body>
+</html>
