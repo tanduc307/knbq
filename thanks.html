@@ -90,6 +90,37 @@
       border-radius: 6px;
       cursor: pointer;
     }
+
+    .content {
+      position: absolute;
+      right: 6rem;
+      bottom: 1rem;
+      z-index: 3;
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
+    .content h1 {
+      font-size: clamp(2rem, 6vw, 4rem);
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.02em;
+    }
+    .content p {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.65rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      font-weight: 600;
+      backdrop-filter: blur(1px);
+    }
 </style>
 </head>
 
@@ -100,23 +131,29 @@
         <div class="logo"></div>
         <nav>
             <ul>
-                <li><a href="https://kyniemboquen.com/"><b>Trang chủ</b></a></li>
-                <li><a href="https://anhnangchieuxuyenla.blogspot.com/"><b>Bài viết</b></a></li>
-                <li><a href="https://anhnangchieuxuyenla.blogspot.com/2025/12/blog-post.html"><b>Liên hệ</b></a></li>
+                <li><a href="https://kyniemboquen.com/"><b>Quay về thực tại</b></a></li>
+                <li><a href="https://anhnangchieuxuyenla.blogspot.com/"><b>Blog</b></a></li>
              
             </ul>
         </nav>
     </header>
 
-    <main>
-		<a href="http://river.kyniemboquen.com/saigongiangsinh/" style="text-decoration: none;"><h2><span style="color: yellow;">Sài Gòn Giáng Sinh</span></h2></a>
-        <a href="http://river.kyniemboquen.com/chiconlagiacmo/" style="text-decoration: none;"><h2><span style="color: yellow;">Chỉ còn là giấc mơ</span></h2></a>		
-		<a href="http://river.kyniemboquen.com/kyniemboquen/" style="text-decoration: none;"><h2><span style="color: yellow;">Kỷ niệm bỏ quên</span></h2></a>
-        <a href="http://river.kyniemboquen.com:4533/app/#/login" style="text-decoration: none;"><h2><span style="color: yellow;">Nghe nhạc</span></h2></a>
+    <main>	    
+		<b><a href="http://river.kyniemboquen.com/saigongiangsinh/" style="text-decoration: none;"><span style="color: rgb(163, 255, 240); font-size:20px">Sài Gòn Giáng Sinh</span></a><br></b>
+        
+        <b><a href="http://river.kyniemboquen.com/chiconlagiacmo/" style="text-decoration: none;"><span style="color: rgb(163, 255, 240); font-size:20px">Chỉ còn là giấc mơ</span></a><br></b>
+
+        <b><a href="http://river.kyniemboquen.com/kyniemboquen/" style="text-decoration: none;"><span style="color: rgb(163, 255, 240); font-size:20px">Kỷ niệm bỏ quên</span></a><br></b>
+       	
+        <b><a href="http://river.kyniemboquen.com:4533/app/#/login" style="text-decoration: none;"><span style="color: rgb(163, 255, 240); font-size:20px">Nghe nhạc</span></a><br></b>		
         
     </main>
 
 </div>
+
+<div class="content">   
+      <a class="btn" href="http://river.kyniemboquen.com/proudofyou/">Trở về năm 2003</a>
+    </div>
 
 <audio id="bgAudio">
   <source src="proud.flac" type="audio/flac">
