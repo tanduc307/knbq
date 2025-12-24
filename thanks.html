@@ -113,10 +113,33 @@
     .btn {
       display: inline-block;
       padding: 0.65rem 1.1rem;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      background: rgba(110, 27, 2, 0.4);
       border: 1px solid rgba(255,255,255,0.25);
-      color: rgb(0, 0, 0);
+      color: rgb(255, 230, 251);
+      text-decoration: none;
+      font-weight: 600;
+      backdrop-filter: blur(1px);
+    }
+
+    .content1 {
+      position: absolute;
+      left: 1rem;
+      bottom: 1rem;
+      z-index: 3;
+      display: flex;
+      gap: .5rem;
+      align-items: center;
+    }
+    
+    .btn1 {
+      display: inline-block;
+      padding: 0.65rem 1.1rem;
+      border-radius: 10px;
+      text-align: center;
+      background: rgba(110, 27, 2, 0.4);
+      border: 1px solid rgba(255,255,255,0.25);
+      color: rgb(255, 230, 251);
       text-decoration: none;
       font-weight: 600;
       backdrop-filter: blur(1px);
@@ -153,8 +176,12 @@
 
 </div>
 
-<div class="content">   
+    <div class="content">   
       <a class="btn" href="http://river.kyniemboquen.com/proudofyou/">Trở về năm 2003</a>
+    </div>
+
+    <div class="content1">   
+      <a class="btn1" href="http://river.kyniemboquen.com/thanks/mamma_mia/">Our last summer<br>Mamma Mia! (2008)</a>
     </div>
 
 <audio id="bgAudio">
